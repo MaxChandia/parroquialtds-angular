@@ -1,2 +1,45 @@
 <app-navbar/>
+    <div class="contactoContainer">
+        <h1 color="primary">Contacto</h1>
+    <div class="breadcrumb">
+        <a routerLink="/">Inicio</a> | Contacto
+    </div>
+
+    <div class="contactoSection">
+        <div class="contactoInformacion">
+        <h2>Datos de Contacto</h2>
+        <p>Sra. Marcela Quintela</p>
+        <p>+56 552 606216</p>
+        <p>tuparroquiainforma&#64;gmail.com</p>
+        <h2>Dirección</h2>
+        <p>Calle Antilhue 01991 (coviefi)</p>
+        <p>Antofagasta, Chile</p>
+        <h2>Horarios de Oficina</h2>
+        <p>Martes a Sábado: 18:30 a 21:00 hrs.</p>
+        <p>Domingo: 10:30 a 14:00 hrs.</p>
+        </div>
+
+        <div class="contactoFormulario">
+        <form [formGroup]="contactoForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" placeholder="Nombre" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="mail" placeholder="Correo" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput formControlName="mensaje" placeholder="Mensaje..."></textarea>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">Enviar</button>
+        </form>
+        </div>
+    </div>
+    </div>
+
 <app-footer/>

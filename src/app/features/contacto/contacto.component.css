@@ -1,0 +1,135 @@
+.contactoContainer {
+    height: auto;
+    width: 100%;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    color: black;
+}
+
+.contactoContainer h1 {
+    margin-bottom: 35px;
+}
+
+.breadcrumb {
+    margin-bottom: 50px;
+}
+
+.contactoSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  
+  column-gap: 4%;                 
+  max-width: 1200px;
+  margin: 0 auto 100px;
+  align-items: start;
+}
+
+
+.contactoInformacion {
+    color: white;
+    background-color:rgba(185, 134, 3, 1) ;
+    border-radius: 14px;
+}
+
+.contactoInformacion h2 {
+    padding: 20px 30px;
+    margin-bottom: 10px;
+}
+
+
+.contactoInformacion p {
+    margin-bottom: 25px;
+    padding: 0px 30px;
+    font-size: 20px;
+}
+
+
+.contactoFormulario form{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.contactoFormulario input {
+    margin-bottom: 15px;
+    width: 300px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: "Montserrat";
+    border-radius: 8px;
+}
+
+.contactoFormulario textarea {
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: "Montserrat";
+    border-radius: 8px;
+}
+
+
+.contactoFormulario button {
+    background-color: rgba(209, 53, 0, 1);
+    border: 0;
+    width: 120px;
+    height: 30px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-weight: 600;
+    margin: 20px 0px;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+
+
+    .contactoContainer {
+        padding: 20px 0px;
+    }
+    .contactoLink {
+        font-size: 13px;
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .contactoSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .contactoInformacion {
+        width: 100%;
+        font-size: 15px;
+        padding: 20px;
+    }
+
+    
+    .contactoInformacion p {
+        width: auto;
+        font-size: 15px;
+        padding: 10px;
+        margin: 5px 0px;
+    }
+
+    .contactoInformacion h2 {
+        width: auto;
+        padding: 10px;
+    }
+
+    .contactoFormulario {
+        width: auto;
+        margin: 0 auto;
+    }
+
+
+}
