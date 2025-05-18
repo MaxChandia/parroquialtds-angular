@@ -4,6 +4,8 @@ import { MaterialesComponent } from './features/materiales/materiales.component'
 import { HomeComponent } from './features/home/home.component';
 import { AportesComponent } from './features/aportes/aportes.component';
 import { ContactoComponent } from './features/contacto/contacto.component';
+import { ComunidadComponent } from './features/comunidad/comunidad.component';
+import { PastoresComponent } from './features/pastores/pastores.component';
 
 export const routes: Routes = [
     {
@@ -25,5 +27,13 @@ export const routes: Routes = [
     {
         path: 'contacto',
         component: ContactoComponent
+    },
+     {
+        path: 'comunidad',
+        component: ComunidadComponent
+    },
+     {
+        path: 'pastores',
+        component: PastoresComponent
     },
 ];

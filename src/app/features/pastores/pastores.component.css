@@ -1,0 +1,79 @@
+.autoridadesContainer {
+    width: 100%;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+    
+}
+
+.autoridadesContainer h1 {
+    margin-bottom: 40px;
+}
+
+.autoridadesContainer p {
+    margin-bottom: 50px;
+}
+
+.autoridadesContainer a {
+    text-decoration: none;
+    color: black;
+}
+
+.autoridadesParroquiales {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-left: 25px;
+    margin-bottom: 100px;
+}
+
+.autoridadesCard {
+    width: 16%;
+}
+
+.autoridadesCard img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin-bottom: 50px;
+}
+
+.autoridadesCard h4 {
+    margin-bottom: 30px;
+}
+
+.autoridadesCard p {
+    margin-bottom: 40px;
+}
+
+.autoridadesCard p:nth-child(3) {
+    font-size: 15px;
+}
+
+.autoridadesCard p:nth-child(4) {
+    font-style: italic;
+    font-size: 13px;
+
+}
+
+@media (max-width:1028px) {
+    .autoridadesParroquiales {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
+        margin-left: 0;
+        margin-bottom: 100px;
+        height: auto;
+    }
+
+    .autoridadesCard {
+        width: 50%;
+    }
+}

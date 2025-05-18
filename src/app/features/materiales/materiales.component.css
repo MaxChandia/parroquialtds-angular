@@ -1,0 +1,177 @@
+.materialesContainer {
+    width: 100%;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+}
+
+.materialesContainer h1 {
+    margin-bottom: 20px;
+}
+
+.materialesContainer p {
+    margin-bottom: 50px;
+}
+
+.materialesContainer a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.materialesSection {
+    height: auto;
+    width: 100%;
+}
+
+.section {
+    height: 450px;
+    width: auto;
+    display: flex;
+}
+
+.imageSection {
+    width: 50%;
+    
+}
+
+.imageSection img {
+    width: 100%;
+    height: 100%;
+}
+
+.descriptionSection {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.descriptionSection h2 {
+    padding: 20px 100px;
+    letter-spacing: 0.5px;
+}
+
+.descriptionSection p {
+    width: 86%;
+}
+
+.materialButton {
+    background-color: rgba(209, 53, 0, 1);
+    border: 0;
+    width: 120px;
+    height: 30px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 14px;
+    padding: 5px 20px;
+}
+
+.materialesSection .section:nth-child(1) .descriptionSection {
+    background-color: rgba(185, 134, 3, 1);
+    color: white;
+}
+
+.materialesSection .section:nth-child(2) .descriptionSection {
+    background-color: white;
+    color: black;
+}
+
+.materialesSection .section:nth-child(3) .descriptionSection {
+    background-color: rgba(63, 63, 63, 1);
+    color: white;
+}
+
+.materialesSection .section:nth-child(4) .descriptionSection {
+    background-color: white;
+    color: black;
+}
+
+@media (max-width:1024px) {
+
+    .materiales {
+        height: auto;
+    }
+
+    .materialesContainer {
+        display: flex;
+        padding: 20px 40px;
+        text-align: justify;
+    }
+
+    
+    .materialesSection {
+        height: auto;
+    }
+
+    .materialesSection .section:nth-child(1) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: auto;
+    }
+
+    .materialesSection .section:nth-child(2) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 500px;
+    }
+
+
+    .materialesSection .section:nth-child(3) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: auto;
+    }
+
+    .materialesSection .section:nth-child(4) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+
+    .imageSection {
+        width: 100%;
+        height: auto;
+    }
+
+    .descriptionSection {
+        width: 100%;
+        height: auto;
+    }
+
+    .descriptionSection p {
+        width: 100%;
+        height: auto;
+        font-size: 15px;
+        padding: 20px 50px;
+    }
+
+    .descriptionSection h2 {
+        padding: 0px 50px;
+        margin-top: 40px;
+    }
+
+    .descriptionSection button {
+        margin: 30px 50px;
+    }
+}   

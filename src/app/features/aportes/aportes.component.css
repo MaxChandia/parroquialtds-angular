@@ -7,10 +7,13 @@
     align-items: center;
     background-color: white;
     color: black;
+    box-sizing: border-box; 
+    
 }
 
 .aportesContainer  h1 {
     margin-bottom: 20px;
+    color: rgb(185, 3, 3);
 }
 
 .aportesContainer a {
@@ -22,44 +25,46 @@
 
 .aportesContainerImage {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     height: 100vh;
-    margin-bottom: 100px;
     display: flex;
-    padding: 50px;
-    
-
+    padding: 50px 20px;
+    box-sizing: border-box;
 }
 
 .aportesContainerImage img {
-    height: 100%;
+    height: 75%;
     width: auto;
-    max-width: 100%;
     border-radius: 14px;
 }
 
 .aportesDetalles {
     position: absolute;
-    background-color: white;
-    height: 55vh;
-    width: 700px;
+    background-color:rgb(159, 42, 42) ;
+    height: 40vh;
+    width: 600px;
     border-radius: 14px;
-    right:10%;
-    top:80%;
+    right:15%;
+    top:40%;
     border-color: black;
-    border: 1px solid rgb(165, 165, 165);
+    border: 1px solid rgb(185, 3, 3);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .aportesDetalles h2 {
     padding: 0 50px;
+    color: white;
 }
 
 .aportesDetalles p {
     margin: 0;
     font-size: 1rem;
+    color: white;
 }
 
 .aportesDetalles p:nth-child(2) {
