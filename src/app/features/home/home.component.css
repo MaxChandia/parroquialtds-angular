@@ -1,0 +1,102 @@
+.home-container {
+    padding-top: 120px;
+    height: auto;
+}
+
+.misasInformacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 100px;
+    padding: 80px 100px;
+    background-color: white;
+    color: black;
+}
+
+.misasInformacion h2 {
+    margin-bottom: 30px;
+}
+
+.misasInformacion p {
+    font-size: 20px;
+    margin:0
+}
+.parroquiaInfo {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    display: block;
+    align-items: center;
+    background-color: white;
+    color: black;
+    overflow: hidden;
+    
+}
+
+.parroquiaInfo img {
+    height: auto;
+    width: 100%;
+}
+
+.parroquiaInfo a{
+    color: white;
+    text-decoration: none;
+}
+
+.parroquiaInfo button {
+    position: absolute;
+    top: 90%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: rgba(185, 134, 3, 1);
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Montserrat";
+    border: none;
+    cursor: pointer;
+}
+
+.donacionLanding {
+    height: 70vh;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+}
+
+
+.donacionLandingContainer {
+    background-color:rgba(185, 134, 3, 1) ;
+    color: white;
+    padding: 50px;
+    border-radius: 14px;
+
+}
+
+.donacionLandingContainer h3 {
+    margin-bottom: 20px;
+}
+
+.donacionLandingContainer p:nth-child(2) {
+    margin-bottom: 20px;
+}
+
+.donacionLandingImage {
+    padding: 50px;
+    height: 350px;
+    width: 600px;
+    border-radius: 14px;
+}
+
+.donacionLandingImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}

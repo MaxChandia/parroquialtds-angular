@@ -1,1 +1,45 @@
-<app-footer/>
+<app-navbar></app-navbar>
+
+<div class="home-container">
+  <section class="hero-section">
+    <app-carrousel [images]="churchImages"></app-carrousel>
+  </section>
+  
+  <section class="misasInformacion">
+        <div class="misasInformacionContainer">
+          <h2>Misas</h2>
+          <p>Martes a Sábado: 20:00</p>
+          <p>Domingos 12:00 y 20:00</p>
+        </div>
+        <div>
+          <h2>Adoración al santísimo</h2>
+          <p>Viernes después de</p>
+          <p>Misa de 20:00</p>
+        </div>
+        <div>
+          <h2>Dirección</h2>
+          <p>Antilhue 01991, Coviefi,</p>
+          <p>Antofagasta</p>
+        </div>
+  </section>
+  <section class="parroquiaInfo">
+        <img src="assets/misalanding.jpg"/>
+        <button mat-button><a href="/comunidad">Conoce nuestra iglesia</a></button>
+  </section>
+  <section class="donacionLanding">
+    <div class="donacionLandingContainer">
+      <h3>La caridad de Cristo</h3>
+      <p>Tu aporte nos ayuda a seguir creciendo</p>
+      <p>Banco Santander</p>
+      <p>cuenta cte. N°3339505924</p>
+      <p>Rut 81.735.106-9 </p>
+      <p>email: tuparroquiainforma&#64;gmail.com</p>
+    </div>
+    <div class="donacionLandingImage">
+      <img src="assets/logo1.jpg"/>
+    </div>
+  </section>
+  
+</div>
+
+<app-footer></app-footer>

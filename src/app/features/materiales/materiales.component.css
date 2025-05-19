@@ -14,7 +14,9 @@
 }
 
 .materialesContainer p {
-    margin-bottom: 50px;
+    margin-bottom: 70px;
+    padding: 0 50px;
+    width:70%;
 }
 
 .materialesContainer a {
