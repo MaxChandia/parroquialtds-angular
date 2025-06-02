@@ -6,6 +6,7 @@ import { AportesComponent } from './features/aportes/aportes.component';
 import { ContactoComponent } from './features/contacto/contacto.component';
 import { ComunidadComponent } from './features/comunidad/comunidad.component';
 import { PastoresComponent } from './features/pastores/pastores.component';
+import { LoginpageComponent } from './features/login/loginpage/loginpage.component';
 
 export const routes: Routes = [
     {
@@ -36,4 +37,8 @@ export const routes: Routes = [
         path: 'pastores',
         component: PastoresComponent
     },
+    {
+        path: 'login',
+        component: LoginpageComponent
+    }
 ];

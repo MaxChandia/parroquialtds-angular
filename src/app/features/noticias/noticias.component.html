@@ -1,7 +1,38 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <h1>Noticias</h1>
-  <div class="row">
+
+<div class="noticias-container">
+  <div class="header-section">
+    <h1>Noticias</h1>
+    <p><a href="/">Inicio</a> | Noticias</p>
+  </div>
+
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Cargando noticias...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="error-container">
+    <p>{{ error }}</p>
+    <button (click)="loadPosts()" class="retry-btn">Reintentar</button>
+  </div>
+  
+
+  <div *ngIf="!loading && !error" class="posts-grid">
+    <app-card 
+      *ngFor="let post of posts" 
+      [post]="post"
+      [image]="getMainImage(post)"
+      [title]="post.title"
+      [description]="getTruncatedContent(post.content)"
+      [slug]="post.slug"
+      [createdAt]="post.createdAt">
+    </app-card>
+  </div>
+
+  <!-- Empty state -->
+  <div *ngIf="!loading && !error && posts.length === 0" class="empty-container">
+    <p>No hay noticias disponibles en este momento.</p>
   </div>
 </div>
-<app-footer/>
+
+<app-footer></app-footer>

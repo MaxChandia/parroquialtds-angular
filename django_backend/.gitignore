@@ -1,0 +1,76 @@
+# .gitignore para proyectos Django
+
+# Directorios de Python y caché
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+/venv/
+/env/
+# Si usas poetry, pipenv u otros, añade sus directorios específicos
+.mypy_cache/
+.pytest_cache/
+
+# Archivos de la base de datos
+*.sqlite3
+*.db
+
+# Archivos de entorno (¡CRUCIAL para la seguridad!)
+.env
+.flaskenv
+.vault
+
+# Archivos de medios subidos por usuarios
+# Puedes personalizar esto si tienes un directorio de medios diferente
+/media/
+/mediafiles/
+
+# Archivos estáticos generados
+# Si Django recoge archivos estáticos en un directorio específico
+/static_collected/
+/staticfiles/ # Nombre común para el directorio de staticfiles
+
+# Archivos de editor/IDE
+.DS_Store
+Thumbs.db
+.idea/ # Directorio de PyCharm/IntelliJ
+.vscode/ # Directorio de VS Code
+*.sublime-workspace
+*.swp # Archivos de swap de Vim
+*.bak # Archivos de backup
+*.log # Archivos de log
+*~ # Archivos de backup de Emacs/Vim
+
+# Archivos de caché de Sass/Less (si tu frontend también está aquí o integrado)
+.sass-cache/
+
+# Documentación generada (si aplica)
+/docs/_build/
+
+# Otros archivos temporales o generados
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.log

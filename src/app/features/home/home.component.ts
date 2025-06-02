@@ -19,13 +19,13 @@ import { MatButtonModule } from '@angular/material/button';
 export class HomeComponent {
   churchImages = [
     {
-      url: 'assets/parro1.jpg',
+      url: 'assets/parroquialanding.jpg',
       alt: 'Church interior with stained glass',
       title: 'Te invitamos a participar de nuestra comunidad',
-      title2: 'Martes a Sábado: 20:00 Domingos 12:00 y 20:00'
+      title2: 'Y al encuentro con el Señor'
     },
     {
-      url: 'assets/parro2.jpg',
+      url: 'assets/misaslide.jpg',
       alt: 'Church exterior view',
       title: 'Horario de Misa',
       title2: 'Martes a Sábado: 20:00 Domingos 12:00 y 20:00'

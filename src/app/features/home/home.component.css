@@ -58,7 +58,7 @@
     cursor: pointer;
 }
 
-.donacionLanding {
+.donacionLandingContainer {
     height: 70vh;
     width: 100%;
     margin: 0 auto;
@@ -68,35 +68,46 @@
     text-align: center;
     background-color: white;
     color: black;
+    max-width: 1200px;
+    gap: 30px;
+    padding: 20px;
 }
 
 
-.donacionLandingContainer {
+.donacionLandingText {
+    width: 50%;
     background-color:rgba(185, 134, 3, 1) ;
+    height: 50%;
     color: white;
-    padding: 50px;
     border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.donacionLandingText p{
+    margin: 0;
 }
 
 .donacionLandingContainer h3 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
+
 
 .donacionLandingContainer p:nth-child(2) {
     margin-bottom: 20px;
 }
 
 .donacionLandingImage {
-    padding: 50px;
-    height: 350px;
+    height: 50%;
     width: 600px;
-    border-radius: 14px;
+    
 }
 
 .donacionLandingImage img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
     border-radius: 14px;
+    display: block;
 }
