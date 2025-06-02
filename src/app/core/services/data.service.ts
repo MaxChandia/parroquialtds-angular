@@ -28,4 +28,16 @@ export class DataService {
   getPostBySlug(slug: string): Observable<Post> {
     return this.http.get<Post>(`${this.apiURL}posts/${slug}/`);
   }
+
+  createPost(postData: Partial<Post>): Observable <Post>{
+    return this.http.post<Post>(`${this.apiURL}post/`, postData);
+  }
+
+  deletePost(slug: String): Observable<Post>{
+    return this.http.delete<Post>(`${this.apiURL}post/${slug}`)
+  }
+
+  editPost(slug: String, editData: Partial<Post>): Observable<Post>{
+    return this.http.put<Post>(`${this.apiURL}post/${slug}/`, editData)
+  }
 }
