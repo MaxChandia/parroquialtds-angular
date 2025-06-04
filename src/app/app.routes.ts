@@ -7,6 +7,7 @@ import { ContactoComponent } from './features/contacto/contacto.component';
 import { ComunidadComponent } from './features/comunidad/comunidad.component';
 import { PastoresComponent } from './features/pastores/pastores.component';
 import { LoginpageComponent } from './features/login/loginpage/loginpage.component';
+import { CrearnoticiaComponent } from './features/crearnoticia/crearnoticia.component';
 
 export const routes: Routes = [
     {
@@ -40,5 +41,9 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginpageComponent
+    },
+    {
+        path: 'admin',
+        component:CrearnoticiaComponent
     }
 ];

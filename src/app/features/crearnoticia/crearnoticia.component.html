@@ -1,1 +1,53 @@
-<p>crearnoticia works!</p>
+<div class='editContainer'>
+    <div class="editor-container">
+    <h2>Escribe una nueva entrada</h2>
+
+    <div class="toolbar">
+    <button (click)="applyCommand('bold')" title="Negrita"><b>B</b></button>
+    <button (click)="applyCommand('italic')" title="Cursiva"><i>I</i></button>
+    <button (click)="applyCommand('underline')" title="Subrayado"><u>U</u></button>
+    <button (click)="applyCommand('strikeThrough')" title="Tachado"><s>S</s></button>
+
+    <span class="separator"></span>
+
+
+    <label for="sizeSelect">Tamaño:</label>
+    <select id="sizeSelect" (change)="changeFontSize($event)" [value]="selectedFontSize">
+    <option *ngFor="let s of fontSizes" [value]="s.value">{{ s.label }}</option>
+    </select>
+
+    <span class="separator"></span>
+
+    <button (click)="insertBulletList()" title="Lista con viñetas">• List</button>
+    <button (click)="insertNumberedList()" title="Lista numerada">1. List</button>
+    </div>
+
+    <div class="title" 
+    contenteditable="true"
+    spellcheck="true" placeholder="Título"></div>
+    <div
+    #editor
+    class="editor"
+    contenteditable="true"
+    spellcheck="true"
+    placeholder="Escribe tu contenido aquí...">
+    </div>
+
+    <div class="action-buttons">
+    <button class="preview-btn">Publicar</button>
+    <button (click)="clearContent()" class="clear-btn">Limpiar</button>
+    </div>
+    </div>
+    <div class='newsList'>
+        <h2>Noticias recientes</h2>
+        <ul>
+            <li *ngFor="let news of news">
+                <h3>{{ news.title }}</h3>
+                <div class='buttons'>
+                    <button >Editar</button>
+                    <button (click)="deleteNews(news.slug)">Eliminar</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

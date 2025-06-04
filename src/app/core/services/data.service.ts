@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';  
 
-export interface Post {
+export interface News {
   id: string; 
   title: string;
   slug: string;
@@ -21,23 +21,23 @@ export class DataService {
   
   constructor(private http: HttpClient) {}
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.apiURL}posts/`);
+  getNews(): Observable<News[]> {
+    return this.http.get<News[]>(`${this.apiURL}posts/`);
   }
 
-  getPostBySlug(slug: string): Observable<Post> {
-    return this.http.get<Post>(`${this.apiURL}posts/${slug}/`);
+  getNewsBySlug(slug: string): Observable<News> {
+    return this.http.get<News>(`${this.apiURL}posts/${slug}/`);
   }
 
-  createPost(postData: Partial<Post>): Observable <Post>{
-    return this.http.post<Post>(`${this.apiURL}post/`, postData);
+  createNews(postData: Partial<News>): Observable <News>{
+    return this.http.post<News>(`${this.apiURL}post/`, postData);
   }
 
-  deletePost(slug: String): Observable<Post>{
-    return this.http.delete<Post>(`${this.apiURL}post/${slug}`)
+  deleteNews(slug: String): Observable<News>{
+    return this.http.delete<News>(`${this.apiURL}post/${slug}`)
   }
 
-  editPost(slug: String, editData: Partial<Post>): Observable<Post>{
-    return this.http.put<Post>(`${this.apiURL}post/${slug}/`, editData)
+  editNews(slug: String, editData: Partial<News>): Observable<News>{
+    return this.http.put<News>(`${this.apiURL}post/${slug}/`, editData)
   }
 }
