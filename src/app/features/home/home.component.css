@@ -3,13 +3,108 @@
     height: auto;
 }
 
+.newsSection {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: auto;
+    padding: 2rem 0;
+    gap: 2rem;
+    margin: 0 auto;
+}
+
+.newsSection h3 {
+    font-size: 30px;
+}
+
+.newsSection button {
+    background-color: rgba(185, 134, 3, 1);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.posts-grid {
+  display: grid;
+  height: auto;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.loading-container p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error-container {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.error-container p {
+  color: #dc3545;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.retry-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+  background-color: #0056b3;
+}
+
+.empty-container {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.empty-container p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
 .misasInformacion {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     gap: 100px;
-    padding: 80px 100px;
+    padding: 100px 100px;
     background-color: white;
     color: black;
 }

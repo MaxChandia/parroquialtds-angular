@@ -22,22 +22,22 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getNews(): Observable<News[]> {
-    return this.http.get<News[]>(`${this.apiURL}posts/`);
+    return this.http.get<News[]>(`${this.apiURL}noticias/`);
   }
 
   getNewsBySlug(slug: string): Observable<News> {
-    return this.http.get<News>(`${this.apiURL}posts/${slug}/`);
+    return this.http.get<News>(`${this.apiURL}noticias/${slug}/`);
   }
 
-  createNews(postData: Partial<News>): Observable <News>{
-    return this.http.post<News>(`${this.apiURL}post/`, postData);
+  createNews(noticiasData: Partial<News>): Observable <News>{
+    return this.http.post<News>(`${this.apiURL}noticias/`, noticiasData);
   }
 
   deleteNews(slug: String): Observable<News>{
-    return this.http.delete<News>(`${this.apiURL}post/${slug}`)
+    return this.http.delete<News>(`${this.apiURL}noticias/${slug}`)
   }
 
   editNews(slug: String, editData: Partial<News>): Observable<News>{
-    return this.http.put<News>(`${this.apiURL}post/${slug}/`, editData)
+    return this.http.put<News>(`${this.apiURL}noticias/${slug}/`, editData)
   }
 }

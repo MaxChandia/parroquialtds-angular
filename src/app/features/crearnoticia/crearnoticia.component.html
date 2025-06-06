@@ -1,53 +1,92 @@
 <div class='editContainer'>
     <div class="editor-container">
-    <h2>Escribe una nueva entrada</h2>
+        <h2>Escribe una nueva entrada</h2>
 
-    <div class="toolbar">
-    <button (click)="applyCommand('bold')" title="Negrita"><b>B</b></button>
-    <button (click)="applyCommand('italic')" title="Cursiva"><i>I</i></button>
-    <button (click)="applyCommand('underline')" title="Subrayado"><u>U</u></button>
-    <button (click)="applyCommand('strikeThrough')" title="Tachado"><s>S</s></button>
+        <div *ngIf="error" class="error-message" (click)="clearError()">
+            {{ error }}
+            <span class="close-error">×</span>
+        </div>
 
-    <span class="separator"></span>
+        <div class="toolbar">
+            <button (click)="applyCommand('bold')" title="Negrita"><b>B</b></button>
+            <button (click)="applyCommand('italic')" title="Cursiva"><i>I</i></button>
+            <button (click)="applyCommand('underline')" title="Subrayado"><u>U</u></button>
+            <button (click)="applyCommand('strikeThrough')" title="Tachado"><s>S</s></button>
 
+            <span class="separator"></span>
 
-    <label for="sizeSelect">Tamaño:</label>
-    <select id="sizeSelect" (change)="changeFontSize($event)" [value]="selectedFontSize">
-    <option *ngFor="let s of fontSizes" [value]="s.value">{{ s.label }}</option>
-    </select>
+            <label for="sizeSelect">Tamaño:</label>
+            <select id="sizeSelect" (change)="changeFontSize($event)" [value]="selectedFontSize">
+                <option *ngFor="let s of fontSizes" [value]="s.value">{{ s.label }}</option>
+            </select>
 
-    <span class="separator"></span>
+            <span class="separator"></span>
 
-    <button (click)="insertBulletList()" title="Lista con viñetas">• List</button>
-    <button (click)="insertNumberedList()" title="Lista numerada">1. List</button>
+            <button (click)="insertBulletList()" title="Lista con viñetas">• List</button>
+            <button (click)="insertNumberedList()" title="Lista numerada">1. List</button>
+        </div>
+
+        <div 
+            #titleInput
+            class="title" 
+            contenteditable="true"
+            spellcheck="true" 
+            placeholder="Título"
+            (focus)="clearError()">
+        </div>
+        
+        <div
+            #editor
+            class="editor"
+            contenteditable="true"
+            spellcheck="true"
+            placeholder="Escribe tu contenido aquí..."
+            (focus)="clearError()">
+        </div>
+
+        <div class="action-buttons">
+            <button 
+                class="preview-btn" 
+                (click)="publishNews()"
+                [disabled]="isPublishing">
+                {{ isPublishing ? 'Publicando...' : 'Publicar' }}
+            </button>
+            <button 
+                (click)="clearContent()" 
+                class="clear-btn"
+                [disabled]="isPublishing">
+                Limpiar
+            </button>
+        </div>
     </div>
 
-    <div class="title" 
-    contenteditable="true"
-    spellcheck="true" placeholder="Título"></div>
-    <div
-    #editor
-    class="editor"
-    contenteditable="true"
-    spellcheck="true"
-    placeholder="Escribe tu contenido aquí...">
-    </div>
-
-    <div class="action-buttons">
-    <button class="preview-btn">Publicar</button>
-    <button (click)="clearContent()" class="clear-btn">Limpiar</button>
-    </div>
-    </div>
     <div class='newsList'>
         <h2>Noticias recientes</h2>
-        <ul>
-            <li *ngFor="let news of news">
-                <h3>{{ news.title }}</h3>
+        
+        <div *ngIf="loading" class="loading-indicator">
+            Cargando noticias...
+        </div>
+
+        <ul *ngIf="!loading && news.length > 0">
+            <li *ngFor="let newsItem of news; trackBy: trackBySlug">
+                <h3>{{ newsItem.title }}</h3>
+                <div class="news-meta" *ngIf="newsItem.createdAt">
+                    <small>{{ newsItem.createdAt | date:'short' }}</small>
+                </div>
                 <div class='buttons'>
-                    <button >Editar</button>
-                    <button (click)="deleteNews(news.slug)">Eliminar</button>
+                    <button mat-raised-button class='editButton'>Editar</button>
+                    <button 
+                        mat-raised-button 
+                        class='deleteButton'  
+                        (click)="deleteNews(newsItem.slug)">
+                        Eliminar
+                    </button>
                 </div>
             </li>
         </ul>
+
+        <div *ngIf="!loading && news.length === 0" class="no-news">
+            No hay noticias publicadas aún.
+        </div>
     </div>
 </div>

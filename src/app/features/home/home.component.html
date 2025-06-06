@@ -17,14 +17,47 @@
           <p>Misa de 20:00</p>
         </div>
         <div>
-          <h2>Dirección</h2>
-          <p>Antilhue 01991, Coviefi,</p>
-          <p>Antofagasta</p>
+          <h2>Horario de Atención</h2>
+          <p>Martes a Sábado: 18:30 a 21:00 hrs.</p>
+          <p>Domingo: 10:30 a 14:00 hrs.</p>
         </div>
   </section>
   <section class="parroquiaInfo">
         <img src="assets/misalanding.jpg"/>
         <button mat-button><a href="/comunidad">Conoce nuestra iglesia</a></button>
+  </section>
+   <section class="newsSection">
+    <h2>Novedades Parroquiales</h2>
+    <div *ngIf="loading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Cargando noticias...</p>
+    </div>
+
+    <div *ngIf="error && !loading" class="error-container">
+      <p>{{ error }}</p>
+      <button (click)="loadPosts()" class="retry-btn">Reintentar</button>
+    </div>
+    
+
+    <div *ngIf="!loading && !error" class="posts-grid">
+      <app-card 
+        *ngFor="let post of posts" 
+        [post]="post"
+        [image]="getMainImage(post)"
+        [title]="post.title"
+        [description]="getTruncatedContent(post.content)"
+        [slug]="post.slug"
+        [createdAt]="post.createdAt">
+      </app-card>
+    </div>
+
+    <!-- Empty state -->
+    <div *ngIf="!loading && !error && posts.length === 0" class="empty-container">
+      <p>No hay noticias disponibles en este momento.</p>
+    </div>
+    <button mat-button routerLink="/noticias" class="ver-todas-btn">
+      Ver todas las noticias
+    </button>
   </section>
   <section class="donacionLandingContainer">
     <div class="donacionLandingText">

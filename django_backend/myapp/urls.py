@@ -3,7 +3,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('users/', views.get_all_users, name='get_all_users'),
-    path('posts/', views.get_all_posts, name='get_all_posts'),
-    path('posts/<str:slug>/', views.get_single_post, name='get_single_post'),
+    # Login
+    path('login/', views.login_view, name='login'), # Make sure you have this line in your main project urls.py if not here
+
+    # Noticias: listado/creación (GET / POST)
+    path('noticias/', views.posts_view, name='posts_view'),
+
+    # Noticias: detalle/actualización/eliminación (GET / PUT / DELETE)
+    path('noticias/<str:slug>/', views.post_detail_view, name='post_detail_view'),
 ]

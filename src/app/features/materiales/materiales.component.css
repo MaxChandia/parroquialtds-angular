@@ -68,12 +68,16 @@
     border: 0;
     width: 120px;
     height: 30px;
-    color: white;
+    color: aliceblue !important;
     font-family: "Montserrat";
     font-size: 15px;
     font-weight: 600;
     border-radius: 14px;
     padding: 5px 20px;
+}
+
+.mat-button {
+    color: white;
 }
 
 .materialesSection .section:nth-child(1) .descriptionSection {

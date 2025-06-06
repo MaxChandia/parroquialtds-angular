@@ -1,1 +1,47 @@
-<p>noticiaspage works!</p>
+<app-navbar/>
+    <div class="noticiaContainer" *ngIf="!loading && news">
+
+    <section class="noticiaHeader">
+        <h1>{{ news.title }}</h1>
+        <p>
+        <a routerLink="/">Inicio</a> |
+        <a routerLink="/noticias">Noticias</a>
+        </p>
+    </section>
+
+    <section class="noticiaContent">
+        <div class="noticiaText">
+            <p>{{ news.content }}</p>
+            <p class="noticiaDate">
+            Publicado el {{ news.createdAt | date: 'dd/MM/yyyy' }}
+            </p>
+        </div>
+
+        <div class="noticiaImage">
+            <img
+            *ngIf="news.imageUrls && news.imageUrls.length > 0"
+            class="noticiaImage"
+            [src]="news.imageUrls[0]"
+            alt="Imagen principal de la noticia"
+            />
+        </div>
+    </section>
+
+    <section
+        class="noticiaGallery"
+        *ngIf="news.imageUrls && news.imageUrls.length > 1"
+    >
+        <img
+        *ngFor="let image of news.imageUrls; let i = index"
+        class="noticiaImage"
+        [src]="image"
+        [alt]="'Imagen de la noticia ' + (i + 1)"
+        />
+    </section>
+    </div>
+
+    <div *ngIf="loading" class="loading">Cargando noticia…</div>
+    <div *ngIf="!loading && error" class="error">
+    Ocurrió un error al cargar la noticia.
+    </div>
+<app-footer></app-footer>
