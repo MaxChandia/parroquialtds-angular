@@ -2,7 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 150px;
-  height: 90vh;
+  height: auto;
 }
 
 .header-section {
@@ -32,6 +32,7 @@
   grid-template-columns: repeat(3, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .loading-container {
@@ -98,7 +99,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive design */
+
 @media (max-width: 768px) {
   .noticias-container {
     padding: 1rem;

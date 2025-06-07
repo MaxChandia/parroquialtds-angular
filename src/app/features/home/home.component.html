@@ -41,7 +41,7 @@
 
     <div *ngIf="!loading && !error" class="posts-grid">
       <app-card 
-        *ngFor="let post of posts" 
+        *ngFor="let post of posts | slice:0:3" 
         [post]="post"
         [image]="getMainImage(post)"
         [title]="post.title"

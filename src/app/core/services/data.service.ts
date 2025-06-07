@@ -34,7 +34,7 @@ export class DataService {
   }
 
   deleteNews(slug: String): Observable<News>{
-    return this.http.delete<News>(`${this.apiURL}noticias/${slug}`)
+    return this.http.delete<News>(`${this.apiURL}noticias/${slug}/`)
   }
 
   editNews(slug: String, editData: Partial<News>): Observable<News>{
