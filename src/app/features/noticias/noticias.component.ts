@@ -5,6 +5,7 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { DataService, News } from '../../core/services/data.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   standalone: true,
@@ -14,7 +15,8 @@ import { DataService, News } from '../../core/services/data.service';
     HttpClientModule,
     NavbarComponent,
     FooterComponent,
-    CardComponent
+    CardComponent,
+    MatPaginatorModule
   ],
   providers: [DataService],
   templateUrl: './noticias.component.html',
@@ -24,6 +26,8 @@ export class NoticiasComponent implements OnInit {
   posts: News[] = [];
   loading: boolean = true;
   error: string | null = null;
+  currentPage = 0;
+  pageSize = 12;
 
   constructor(private dataService: DataService) {}
 
@@ -31,10 +35,15 @@ export class NoticiasComponent implements OnInit {
     this.loadPosts();
   }
 
+   onPageChange(event: any): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+  }
+
   loadPosts(): void {
     this.dataService.getNews().subscribe({
       next: (posts) => {
-        this.posts = posts;
+        this.posts = posts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         this.loading = false;
       },
       error: (error) => {

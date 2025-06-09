@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
     loadPosts(): void {
       this.dataService.getNews().subscribe({
         next: (posts) => {
-          this.posts = posts;
+          this.posts = posts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
           this.loading = false;
         },
         error: (error) => {

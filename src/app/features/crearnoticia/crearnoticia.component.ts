@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService, News } from '../../core/services/data.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   standalone: true,
   selector: 'app-crearnoticia',
-  imports: [CommonModule, FormsModule, HttpClientModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './crearnoticia.component.html',
   styleUrls: ['./crearnoticia.component.css']
 })
@@ -33,6 +34,8 @@ export class CrearnoticiaComponent implements OnInit {
   loading: boolean = true;
   error: string | null = null;
   isPublishing: boolean = false;
+  currentPage = 0;
+  pageSize = 6;
 
   constructor(private dataService: DataService) {}
 
@@ -81,6 +84,10 @@ export class CrearnoticiaComponent implements OnInit {
     this.error = null;
   }
 
+  onPageChange(event: any): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+  }
   // ========== MÉTODOS CRUD ==========
   loadNews(): void {
     this.loading = true;
@@ -88,7 +95,8 @@ export class CrearnoticiaComponent implements OnInit {
     
     this.dataService.getNews().subscribe({
       next: (data) => {
-        this.news = data;
+        this.news = data.sort ((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        this.currentPage = 0;
         this.loading = false;
       },
       error: (error) => {

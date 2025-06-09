@@ -32,6 +32,16 @@
   <div *ngIf="!loading && !error && posts.length === 0" class="empty-container">
     <p>No hay noticias disponibles en este momento.</p>
   </div>
+  <div>
+    <mat-paginator 
+      *ngIf="!loading && !error && posts.length > 12" 
+      [length]="posts.length" 
+      [pageSizeOptions]="[12, 24, 36]" 
+      [pageSize]="pageSize" 
+      [pageIndex]="currentPage - 1"
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
 </div>
 
 <app-footer></app-footer>

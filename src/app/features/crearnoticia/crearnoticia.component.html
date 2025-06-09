@@ -67,8 +67,8 @@
             Cargando noticias...
         </div>
 
-        <ul *ngIf="!loading && news.length > 0">
-            <li *ngFor="let newsItem of news; trackBy: trackBySlug">
+        <ul *ngIf="!loading && news.length > 0 " class="news-list">
+            <li *ngFor="let newsItem of news | slice:(currentPage * pageSize):(currentPage * pageSize + pageSize); trackBy: trackBySlug">
                 <h3>{{ newsItem.title }}</h3>
                 <div class="news-meta" *ngIf="newsItem.createdAt">
                     <small>{{ newsItem.createdAt | date:'short' }}</small>
@@ -87,6 +87,14 @@
 
         <div *ngIf="!loading && news.length === 0" class="no-news">
             No hay noticias publicadas aún.
+        </div>
+        <div *ngIf='news.length > 6'>
+            <mat-paginator 
+                [length]="news.length" 
+                [pageSize]="6" 
+                [pageSizeOptions]="[6, 12, 24]"
+                (page)="onPageChange($event)">
+            </mat-paginator>
         </div>
     </div>
 </div>
