@@ -1,1 +1,44 @@
-<p>noticiasedit works!</p>
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h1>Editar Noticia</h1>
+
+  <div *ngIf="loading" class="loading-indicator">
+    <p>Cargando noticia...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message" (click)="clearError()">
+    {{ error }}
+    <span class="close-error">×</span>
+  </div>
+
+  <form [formGroup]="noticiaForm" *ngIf="newsItem && !loading" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Título</label>
+      <input type="text" id="title" formControlName="title" class="form-control" />
+      <div *ngIf="noticiaForm.get('title')?.invalid && noticiaForm.get('title')?.touched" class="text-danger">
+        El título es requerido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Contenido</label>
+      <textarea id="content" formControlName="content" class="form-control" rows="10"></textarea>
+      <div *ngIf="noticiaForm.get('content')?.invalid && noticiaForm.get('content')?.touched" class="text-danger">
+        El contenido es requerido.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="noticiaForm.invalid || loading">Guardar Cambios</button>
+  </form>
+
+  <div *ngIf="!loading && !newsItem && error" class="no-news-found">
+    <p>{{ error }}</p>
+  </div>
+  <div *ngIf="!loading && !newsItem && !error" class="no-news-found">
+    <p>No se pudo encontrar la noticia. Verifique la URL.</p>
+  </div>
+
+</div>
+
+<app-footer></app-footer>

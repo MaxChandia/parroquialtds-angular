@@ -5,11 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService, News } from '../../core/services/data.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CloudinaryService } from '../../core/services/cloudinary/cloudinary.service';
+import { forkJoin } from 'rxjs';
+import { finalize } from 'rxjs/operators'; 
+import {RouterLink} from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-crearnoticia',
-  imports: [CommonModule, FormsModule, HttpClientModule, MatButtonModule, MatPaginatorModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, MatButtonModule, MatPaginatorModule , RouterLink],
   templateUrl: './crearnoticia.component.html',
   styleUrls: ['./crearnoticia.component.css']
 })
@@ -36,8 +40,14 @@ export class CrearnoticiaComponent implements OnInit {
   isPublishing: boolean = false;
   currentPage = 0;
   pageSize = 6;
+  imageUrls: { url: string; name: string }[] = []; 
+  isUploadingImages: boolean = false; 
 
-  constructor(private dataService: DataService) {}
+
+  constructor(
+    private dataService: DataService,
+    private cloudinaryService: CloudinaryService
+  ) {}
 
   ngOnInit(): void {
     this.loadNews();
@@ -80,8 +90,13 @@ export class CrearnoticiaComponent implements OnInit {
 
   public clearContent() {
     this.editor.nativeElement.innerHTML = '';
-    this.titleInput.nativeElement.innerHTML = '';
+    this.titleInput.nativeElement.innerText = ''; 
     this.error = null;
+    this.imageUrls = [];
+  }
+
+   removeImageByUrl(urlToRemove: string): void {
+      this.imageUrls = this.imageUrls.filter(img => img.url !== urlToRemove);
   }
 
   onPageChange(event: any): void {
@@ -131,6 +146,7 @@ export class CrearnoticiaComponent implements OnInit {
     const newNews: Partial<News> = {
       title: title,
       content: content,
+      imageUrls: this.imageUrls.map(img => img.url), 
     };
 
     this.dataService.createNews(newNews as News).subscribe({
@@ -168,20 +184,44 @@ export class CrearnoticiaComponent implements OnInit {
     });
   }
 
-  editNews(updatedPost: News): void {
-    this.dataService.editNews(updatedPost.slug, updatedPost).subscribe({
-      next: (data) => {
-        const index = this.news.findIndex(p => p.slug === data.slug);
-        if (index !== -1) {
-          this.news[index] = data;
+
+  onImageSelected(event: Event): void {
+    const files = (event.target as HTMLInputElement).files;
+    if (!files || files.length === 0) return;
+
+    this.isUploadingImages = true; 
+    this.error = null; 
+
+    const uploadObservables = Array.from(files).map(file => 
+      this.cloudinaryService.uploadImage(file)
+    );
+
+    forkJoin(uploadObservables)
+      .pipe(
+        finalize(() => {
+          this.isUploadingImages = false; 
+        })
+      )
+      .subscribe({
+        next: (responses) => {
+          const newImageUrls: { url: string; name: string }[] = [];
+          responses.forEach((data, index) => {
+            const file = files[index];
+            newImageUrls.push({ url: data.secure_url, name: file.name });
+
+          });
+          this.imageUrls = [...this.imageUrls, ...newImageUrls];
+          console.log('URLs de las imágenes subidas:', this.imageUrls);
+        },
+        error: (err) => {
+          this.error = 'Error al subir una o más imágenes. Intenta nuevamente.';
+          this.isUploadingImages = false;
+          console.error('Error al subir imágenes:', err);
         }
-      },
-      error: (error) => {
-        this.error = 'No se pudo actualizar el contenido';
-        console.error('Error actualizando noticia:', error);
-      }
-    });
+      });
   }
+
+
 
   clearError(): void {
     this.error = null;

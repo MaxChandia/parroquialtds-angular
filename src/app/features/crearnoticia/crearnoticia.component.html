@@ -43,6 +43,21 @@
             placeholder="Escribe tu contenido aquí..."
             (focus)="clearError()">
         </div>
+        <input type="file" (change)="onImageSelected($event)" accept="image/*" multiple>
+
+            <div *ngIf="imageUrls.length > 0">
+            <h3>Imágenes subidas:</h3>
+            <ul>
+                <li *ngFor="let img of imageUrls">
+                    <a [href]="img.url" target="_blank">{{ img.name }}</a>
+                 <button (click)="removeImageByUrl(img.url)">X</button>
+                </li>
+            </ul>
+            </div>
+
+            <div *ngIf="isUploadingImages">
+            <p>Subiendo imágenes...</p>
+            </div>
 
         <div class="action-buttons">
             <button 
@@ -74,7 +89,7 @@
                     <small>{{ newsItem.createdAt | date:'short' }}</small>
                 </div>
                 <div class='buttons'>
-                    <button mat-raised-button class='editButton'>Editar</button>
+                    <button mat-raised-button class='editButton' [routerLink]="['/noticias/edit', newsItem.slug]">Editar</button>
                     <button 
                         mat-raised-button 
                         class='deleteButton'  
@@ -88,11 +103,11 @@
         <div *ngIf="!loading && news.length === 0" class="no-news">
             No hay noticias publicadas aún.
         </div>
-        <div *ngIf='news.length > 6'>
+        <div *ngIf='news.length > 5'>
             <mat-paginator 
                 [length]="news.length" 
-                [pageSize]="6" 
-                [pageSizeOptions]="[6, 12, 24]"
+                [pageSize]="5" 
+                [pageSizeOptions]="[5, 10, 15]"
                 (page)="onPageChange($event)">
             </mat-paginator>
         </div>

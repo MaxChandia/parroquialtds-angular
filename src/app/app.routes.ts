@@ -9,6 +9,7 @@ import { PastoresComponent } from './features/pastores/pastores.component';
 import { LoginpageComponent } from './features/login/loginpage/loginpage.component';
 import { CrearnoticiaComponent } from './features/crearnoticia/crearnoticia.component';
 import { NoticiaspageComponent } from './features/noticiaspage/noticiaspage.component';
+import { NoticiaseditComponent } from './features/noticiasedit/noticiasedit.component';
 
 export const routes: Routes = [
     {
@@ -51,4 +52,8 @@ export const routes: Routes = [
     path: 'noticias/:slug',
     component: NoticiaspageComponent
   },
+  {
+    path: 'noticias/edit/:slug',
+    component: NoticiaseditComponent
+  }
 ];
