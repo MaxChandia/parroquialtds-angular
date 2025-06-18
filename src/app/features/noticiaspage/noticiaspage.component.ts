@@ -28,14 +28,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class NoticiaspageComponent implements OnInit {
   news: News | null = null;
-  sanitizedContent: SafeHtml | undefined; // <-- Nueva propiedad para el HTML seguro
+  sanitizedContent: SafeHtml | undefined; 
   loading = true;
   error = false;
 
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
-    private sanitizer: DomSanitizer // <-- Inyecta DomSanitizer
+    private sanitizer: DomSanitizer 
   ) { }
 
   ngOnInit(): void {

@@ -1,44 +1,83 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-  <h1>Editar Noticia</h1>
-
-  <div *ngIf="loading" class="loading-indicator">
-    <p>Cargando noticia...</p>
-  </div>
-
-  <div *ngIf="error" class="error-message" (click)="clearError()">
-    {{ error }}
-    <span class="close-error">×</span>
-  </div>
-
-  <form [formGroup]="noticiaForm" *ngIf="newsItem && !loading" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="title">Título</label>
-      <input type="text" id="title" formControlName="title" class="form-control" />
-      <div *ngIf="noticiaForm.get('title')?.invalid && noticiaForm.get('title')?.touched" class="text-danger">
-        El título es requerido.
-      </div>
+    <div *ngIf="error" class="error-message">
+        {{ error }}
+        <span class="close-error" (click)="clearError()">×</span>
     </div>
 
-    <div class="form-group">
-      <label for="content">Contenido</label>
-      <textarea id="content" formControlName="content" class="form-control" rows="10"></textarea>
-      <div *ngIf="noticiaForm.get('content')?.invalid && noticiaForm.get('content')?.touched" class="text-danger">
-        El contenido es requerido.
-      </div>
+    <div *ngIf="loading">Cargando noticia...</div>
+
+    <!-- Verificar que news existe antes de acceder a sus propiedades -->
+    <div *ngIf="news">
+        <div class="editor-header">
+            <h1>Editar {{ news.slug }}</h1>
+        </div>
+        
+        <div class="editor-container">
+            <div class="toolbar">
+            <button (click)="applyCommand('bold')" title="Negrita"><b>B</b></button>
+            <button (click)="applyCommand('italic')" title="Cursiva"><i>I</i></button>
+            <button (click)="applyCommand('underline')" title="Subrayado"><u>U</u></button>
+            <button (click)="applyCommand('strikeThrough')" title="Tachado"><s>S</s></button>
+
+            <span class="separator"></span>
+
+            <label for="sizeSelect">Tamaño:</label>
+            <select id="sizeSelect" (change)="changeFontSize($event)" [value]="selectedFontSize">
+                <option *ngFor="let s of fontSizes" [value]="s.value">{{ s.label }}</option>
+            </select>
+
+            <span class="separator"></span>
+
+            <button (click)="insertBulletList()" title="Lista con viñetas">• List</button>
+            <button (click)="insertNumberedList()" title="Lista numerada">1. List</button>
+        </div>
+
+            <!-- Título editable -->
+            <div 
+                #titleInput
+                class="title" 
+                contenteditable="true"
+                spellcheck="true" 
+                (focus)="clearError()">
+                {{ news.title }}
+            </div>
+            
+            <!-- Editor de contenido -->
+            <div
+                #editor
+                class="editor"
+                contenteditable="true"
+                spellcheck="true"
+                (focus)="clearError()"
+                [innerHTML]="sanitizedContent">
+            </div>
+        </div>
+
+        <!-- Imágenes -->
+        <div class="image-container" *ngIf="news.imageUrls && news.imageUrls.length > 0">
+            <div class="image-grid">
+                <div *ngFor="let image of news.imageUrls; let i = index" class="image-item">
+                    <img 
+                        class="noticiaImage"
+                        [src]="image"
+                        [alt]="'Imagen ' + (i + 1) + ' de la noticia'"/>
+                    <button (click)="removeImage(image)" class="remove-image-btn">
+                        x
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="buttonSave">
+            <button 
+                mat-raised-button
+                class="btn-save"
+                 (click)="canSave() && editNews()">
+                Guardar cambios
+            </button>
+        </div>
     </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="noticiaForm.invalid || loading">Guardar Cambios</button>
-  </form>
-
-  <div *ngIf="!loading && !newsItem && error" class="no-news-found">
-    <p>{{ error }}</p>
-  </div>
-  <div *ngIf="!loading && !newsItem && !error" class="no-news-found">
-    <p>No se pudo encontrar la noticia. Verifique la URL.</p>
-  </div>
-
 </div>
 
 <app-footer></app-footer>
