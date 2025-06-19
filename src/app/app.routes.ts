@@ -10,6 +10,12 @@ import { LoginpageComponent } from './features/login/loginpage/loginpage.compone
 import { CrearnoticiaComponent } from './features/crearnoticia/crearnoticia.component';
 import { NoticiaspageComponent } from './features/noticiaspage/noticiaspage.component';
 import { NoticiaseditComponent } from './features/noticiasedit/noticiasedit.component';
+import { BautizosComponent } from './features/sacramentos/bautizos/bautizos.component';
+import { ComunionComponent } from './features/sacramentos/comunion/comunion.component';
+import { ConfirmacionComponent } from './features/sacramentos/confirmacion/confirmacion.component';
+import { ConfesionesComponent } from './features/sacramentos/confesiones/confesiones.component';
+import { MatrimonioComponent } from './features/sacramentos/matrimonio/matrimonio.component';
+import { UncionComponent } from './features/sacramentos/uncion/uncion.component';
 
 export const routes: Routes = [
     {
@@ -55,5 +61,29 @@ export const routes: Routes = [
   {
     path: 'noticias/edit/:slug',
     component: NoticiaseditComponent
+  },
+  {
+    path: 'sacramentos/bautismo',
+    component: BautizosComponent
+  },
+  {
+    path: 'sacramentos/comunion',
+    component: ComunionComponent
+  },
+  {
+    path:'sacramentos/confirmacion',
+    component: ConfirmacionComponent
+  },
+  {
+    path: 'sacramentos/confesion',
+    component: ConfesionesComponent
+  },
+  {
+    path: 'sacramentos/matrimonio',
+    component: MatrimonioComponent
+  },
+  {
+    path:'sacramentos/uncion',
+    component: UncionComponent
   }
 ];
