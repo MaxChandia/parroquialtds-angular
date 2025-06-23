@@ -1,59 +1,63 @@
 import { Component } from '@angular/core';
-import { RouterModule, Router } from '@angular/router'; 
+import { RouterModule, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms'; 
-import { HttpClient, HttpClientModule } from '@angular/common/http'; 
-import { CommonModule } from '@angular/common'; 
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-loginpage',
-  standalone: true, 
+  standalone: true,
   imports: [
     RouterModule,
     MatButtonModule,
     MatCardModule,
-    ReactiveFormsModule, 
-    HttpClientModule,
-    CommonModule 
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './loginpage.component.html',
   styleUrl: './loginpage.component.css'
 })
 export class LoginpageComponent {
-
+  
   loginForm = new FormGroup({
-    username: new FormControl('', Validators.required), 
-    password: new FormControl('', Validators.required)  
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
   });
 
-  errorMessage: string | null = null; 
+  errorMessage: string | null = null;
+  isLoading: boolean = false;
 
-  
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    // Si ya está autenticado, redirigir
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/admin']);
+    }
+  }
 
-  
   onSubmit() {
-    this.errorMessage = null; 
-
+    this.errorMessage = null;
     
     if (this.loginForm.valid) {
+      this.isLoading = true;
       const { username, password } = this.loginForm.value;
-
-
-      this.http.post('http://localhost:8000/api/login/', { username, password })
-        .subscribe({
-          next: (response: any) => {
-            console.log('LoginpageComponent: Login successful, response:', response); 
-            localStorage.setItem('jwt_token', response.token);
-             console.log('LoginpageComponent: Token saved to localStorage with key "jwt_token":', localStorage.getItem('jwt_token')); // <-- THIS ONE
-            this.router.navigate(['/admin']);
-          },
-          error: (error) => {
-            console.error('Error de login:', error);
-            this.errorMessage = 'Usuario o contraseña incorrectos.';
-          }
-        });
+      
+      this.authService.login(username!, password!).subscribe({
+        next: (response) => {
+          console.log('Login successful:', response);
+          this.router.navigate(['/admin']); // o donde quieras redirigir
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error de login:', error);
+          this.errorMessage = 'Usuario o contraseña incorrectos.';
+          this.isLoading = false;
+        }
+      });
     } else {
       this.errorMessage = 'Por favor, introduce tu usuario y contraseña.';
     }
