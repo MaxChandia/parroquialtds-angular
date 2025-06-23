@@ -1,49 +1,87 @@
-.home-container {
-    height: auto;
+
+html {
+  box-sizing: border-box;
+  overflow-x: hidden; 
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+  font-family: 'Montserrat', sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; 
+}
+
+.home-container {
+  height: auto;
+  overflow-x: hidden;
+}
+
 
 .newsSection {
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    height: auto;
-    padding: 2rem 0;
-    gap: 2rem;
-    margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 20px; 
+  height: auto;
+  gap: 2rem;
+  margin: 0 auto;
+  width: 100%; 
+  box-sizing: border-box; 
 }
 
-.newsSection h3 {
-    font-size: 30px;
+.newsSection h2 { 
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 0; 
 }
 
 .newsSection button {
-    background-color: rgba(185, 134, 3, 1);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+  background-color: rgba(185, 134, 3, 1);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.newsSection button:hover {
+  background-color: rgba(140, 100, 0, 1);
 }
 
 .posts-grid {
   display: grid;
   height: auto;
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  width: 100%; 
 }
 
-.loading-container {
+.loading-container,
+.error-container,
+.empty-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 0;
+  padding: 4rem 20px; 
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .loading-spinner {
@@ -56,18 +94,15 @@
   margin-bottom: 1rem;
 }
 
-.loading-container p {
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p,
+.error-container p,
+.empty-container p {
   color: #666;
-  font-size: 1.1rem;
-}
-
-.error-container {
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.error-container p {
-  color: #dc3545;
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
@@ -87,257 +122,333 @@
   background-color: #0056b3;
 }
 
-.empty-container {
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.empty-container p {
-  color: #666;
-  font-size: 1.1rem;
-}
 
 .misasInformacion {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 100px;
-    padding: 100px 100px;
-    background-color: white;
-    color: black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  gap: 50px;
+  padding: 80px 50px; 
+  color: black;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.misasInformacion > div {
+  flex: 1 1 auto;
+  min-width: 280px; 
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .misasInformacion h2 {
-    margin-bottom: 30px;
+  margin-bottom: 20px;
+  font-size: 26px;
 }
 
 .misasInformacion p {
-    font-size: 20px;
-    margin:0
+  font-size: 18px;
+  margin: 0;
+  line-height: 1.4;
 }
+
+
 .parroquiaInfo {
-    position: relative;
-    height: 70vh;
-    width: 100%;
-    display: block;
-    align-items: center;
-    background-color: white;
-    color: black;
-    overflow: hidden;
-    
+  position: relative;
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  overflow: hidden;
+  text-align: center;
 }
 
 .parroquiaInfo img {
-    height: auto;
-    width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.parroquiaInfo a{
-    color: white;
-    text-decoration: none;
+.parroquiaInfo a {
+  color: white;
+  text-decoration: none;
 }
 
 .parroquiaInfo button {
-    position: absolute;
-    top: 90%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background-color: rgba(185, 134, 3, 1);
-    color: white;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-family: "Montserrat";
-    border: none;
-    cursor: pointer;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(185, 134, 3, 1);
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+  white-space: nowrap;
 }
+
 
 .donacionLandingContainer {
-    height: 70vh;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    max-width: 1200px;
-    gap: 30px;
-    padding: 20px;
+  height: auto;
+  min-height: 50vh;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  max-width: 1200px;
+  gap: 30px;
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
-
 
 .donacionLandingText {
-    width: 50%;
-    background-color:rgba(185, 134, 3, 1) ;
-    height: 50%;
-    color: white;
-    border-radius: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  flex: 1 1 400px;
+  background-color: rgba(185, 134, 3, 1);
+  height: auto;
+  min-height: 250px;
+  color: white;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.donacionLandingText p{
-    margin: 0;
+.donacionLandingText p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 .donacionLandingContainer h3 {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
+  font-size: 24px;
 }
 
-
 .donacionLandingContainer p:nth-child(2) {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .donacionLandingImage {
-    height: 50%;
-    width: 600px;
-    
+  flex: 1 1 400px;
+  height: auto;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .donacionLandingImage img {
-    height: 100%;
-    width: 100%;
-    border-radius: 14px;
-    display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+  display: block;
 }
 
-/* Media Queries para diferentes tamaños de pantalla */
 
-/* Tablets y pantallas medianas */
+
+/* Tablets and medium screens */
 @media (max-width: 768px) {
-    .misasInformacion {
-        flex-direction: column;
-        gap: 2rem;
-        padding: 3rem 1rem;
-    }
-    
-    .misasInformacionContainer,
-    .misasInformacion > div {
-        min-width: 100%;
-        margin-bottom: 1rem;
-    }
-    
-    .posts-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        padding: 0 0.5rem;
-    }
-    
-    .donacionLandingContainer {
-        flex-direction: column;
-        padding: 2rem 1rem;
-        gap: 1.5rem;
-    }
-    
-    .donacionLandingText,
-    .donacionLandingImage {
-        width: 100%;
-        min-width: unset;
-    }
-    
-    .donacionLandingImage {
-        max-width: 100%;
-        height: 200px;
-    }
-    
-    .parroquiaInfo {
-        height: 50vh;
-        min-height: 300px;
-    }
-    
-    .parroquiaInfo button {
-        top: 80%;
-        padding: 10px 20px;
-    }
-    
-    .map-container iframe {
-        height: 300px;
-    }
+  .newsSection {
+    padding: 2rem 15px; /* Adjust horizontal padding */
+    gap: 1.5rem;
+  }
+
+  .posts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .misasInformacion {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem 15px; /* Adjust padding */
+  }
+
+  .misasInformacion > div {
+    min-width: unset;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 15px;
+  }
+
+  .misasInformacion h2 {
+    font-size: 24px;
+  }
+
+  .misasInformacion p {
+    font-size: 16px;
+  }
+
+  .donacionLandingContainer {
+    flex-direction: column;
+    padding: 2rem 15px; /* Adjust padding */
+    gap: 1.5rem;
+    height: auto;
+    min-height: unset;
+  }
+
+  .donacionLandingText,
+  .donacionLandingImage {
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: unset;
+  }
+
+  .donacionLandingImage {
+    height: 250px;
+    max-width: 100%;
+  }
+
+  .donacionLandingImage img {
+    object-fit: contain;
+  }
+
+  .parroquiaInfo {
+    height: 60vh;
+    min-height: 350px;
+  }
+
+  .parroquiaInfo button {
+    bottom: 8%;
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+
+  .map-container {
+    padding: 0 15px;
+    margin: 30px auto;
+  }
+
+  .map-container iframe {
+    height: 350px;
+  }
 }
 
-/* Móviles */
+/* Mobile phones */
 @media (max-width: 480px) {
-    .newsSection {
-        padding: 1.5rem 0.5rem;
-        gap: 1.5rem;
-    }
-    
-    .posts-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin-top: 1.5rem;
-    }
-    
-    .misasInformacion {
-        padding: 2rem 1rem;
-        gap: 1.5rem;
-    }
-    
-    .donacionLandingContainer {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+  .newsSection {
+    padding: 1.5rem 10px; /* Smaller horizontal padding */
+    gap: 1rem;
+  }
 
-    }
-    
-    
-    .donacionLandingImage {
-        height: 180px;
-        width: auto;
-    }
-    
-    .parroquiaInfo {
-        height: 40vh;
-        min-height: 250px;
-    }
-    
-    .parroquiaInfo button {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-    
-    .map-container iframe {
-        height: 250px;
-    }
-    
-    .loading-container,
-    .error-container,
-    .empty-container {
-        padding: 2rem 0.5rem;
-    }
+  .newsSection h2 {
+    font-size: 24px;
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .misasInformacion {
+    padding: 2rem 10px;
+    gap: 1rem;
+  }
+
+  .misasInformacion h2 {
+    font-size: 22px;
+  }
+
+  .misasInformacion p {
+    font-size: 16px;
+  }
+
+  .donacionLandingContainer {
+    /* Removed padding: 0 here to let the global padding handle it */
+    gap: 1rem;
+    border-radius: 0px;
+    padding: 1rem 10px; /* Explicit padding for mobile */
+  }
+
+  .donacionLandingText {
+    /* Removed padding: 0 here. Use a specific small padding value for consistency. */
+    padding: 15px; /* Added internal padding */
+    border-radius: 0px;
+    min-height: 200px;
+  }
+
+  .donacionLandingContainer h3 {
+    font-size: 22px;
+  }
+
+  .donacionLandingContainer p {
+    font-size: 15px;
+  }
+
+  .donacionLandingImage {
+    height: 200px;
+  }
+
+  .parroquiaInfo {
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .parroquiaInfo button {
+    bottom: 5%;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .map-container {
+    padding: 0 10px;
+    margin: 20px auto;
+  }
+
+  .map-container iframe {
+    height: 300px;
+  }
+
+  .loading-container,
+  .error-container,
+  .empty-container {
+    padding: 2rem 10px;
+  }
 }
 
-/* Pantallas extra pequeñas */
-@media (max-width: 320px) {
-    .newsSection {
-        padding: 1rem 0.25rem;
-    }
-    
-    .misasInformacion {
-        padding: 1.5rem 0.5rem;
-    }
-    
-    .donacionLandingContainer {
-        padding: 1rem 0.25rem;
-    }
-    
-    .donacionLandingText {
-        padding: 1rem;
-        min-height: 180px;
-    }
-    
-    .donacionLandingImage {
-        height: 150px;
-    }
-    
-    .map-container iframe {
-        height: 200px;
-    }
+/* Extra small screens (e.g., iPhone 5/SE) */
+@media (max-width: 375px) {
+  .newsSection h2 {
+    font-size: 22px;
+  }
+
+  .misasInformacion h2 {
+    font-size: 20px;
+  }
+
+  .donacionLandingContainer h3 {
+    font-size: 20px;
+  }
+
+  .parroquiaInfo button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .donacionLandingImage {
+    height: 180px;
+  }
+
+  .map-container iframe {
+    height: 250px;
+  }
 }

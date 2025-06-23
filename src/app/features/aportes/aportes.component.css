@@ -74,7 +74,9 @@
 @media (max-width: 1024px) {
 
     .aportesContainer {
-        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     .aportesContainer p {
@@ -84,14 +86,19 @@
 
     .aportesContainerImage {
         width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        height: 100vh;
+        padding: 0;
     }
+
+        .aportesContainerImage img {
+        height: 80%;
+        width: 100%;
+        border-radius: 14px;
+    }
+
 
     .aportesDetalles {
         position: absolute;
-        background-color: white;
         height: 300px;
         width: 350px;
         border-radius: 14px;

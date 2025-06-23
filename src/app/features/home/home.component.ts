@@ -39,13 +39,13 @@ export class HomeComponent implements OnInit {
       url: 'assets/misaslide.jpg',
       alt: 'Church exterior view',
       title: 'Horarios de Misas',
-      title2: 'Martes a Sábado: 20:00 Domingos 12:00 y 20:00'
+      title2: 'Martes a Sábado: 20:00 Domingos 12:00 y 20:00 Festivos 12:00'
     },
     {
       url: 'assets/parro3.jpg',
       alt: 'Community gathering',
-      title: 'Community Events',
-      title2: 'Martes a Sábado: 20:00 Domingos 12:00 y 20:00'
+      title: '"Y se transfiguró delante de ellos',
+      title2: 'y su rostro resplandeció como el sol, y sus vestidos se hicieron blancos como la luz"'
     }
   ];
 
