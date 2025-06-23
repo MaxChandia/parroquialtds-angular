@@ -102,7 +102,7 @@
 
 @media (max-width: 768px) {
   .noticias-container {
-    padding: 1rem;
+    padding: 100px 1rem 0 1rem;
   }
   
   .header-section h1 {
@@ -111,6 +111,6 @@
   
   .posts-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 }

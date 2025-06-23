@@ -108,7 +108,7 @@
 
     .materialesContainer {
         display: flex;
-        padding: 20px 40px;
+        padding-top: 100px;
         text-align: justify;
     }
 
@@ -166,14 +166,14 @@
     }
 
     .descriptionSection p {
-        width: 100%;
+        width: 70%;
         height: auto;
         font-size: 15px;
-        padding: 20px 50px;
+        padding: 0px;
     }
 
     .descriptionSection h2 {
-        padding: 0px 50px;
+        padding: 0px 0px;
         margin-top: 40px;
     }
 
