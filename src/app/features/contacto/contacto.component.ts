@@ -45,14 +45,14 @@ export class ContactoComponent {
     const { nombre, mail, mensaje } = this.contactoForm.value;
 
     emailjs.send(
-      'service_hdzmjsb',        // tu Service ID
-      'template_p4awnkq',       // tu Template ID
+      'service_hdzmjsb',       
+      'template_p4awnkq',     
       {
         from_name: nombre,
         message: mensaje,
         reply_to: mail
       },
-      'i5bpqOQH5kvoK7dZ5'       // tu User ID (Public Key)
+      'i5bpqOQH5kvoK7dZ5'       
     ).then(
       result => {
         console.log('Email enviado:', result.text);

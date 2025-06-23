@@ -16,6 +16,7 @@ import { ConfirmacionComponent } from './features/sacramentos/confirmacion/confi
 import { ConfesionesComponent } from './features/sacramentos/confesiones/confesiones.component';
 import { MatrimonioComponent } from './features/sacramentos/matrimonio/matrimonio.component';
 import { UncionComponent } from './features/sacramentos/uncion/uncion.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -52,7 +53,8 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
-        component:CrearnoticiaComponent
+        component:CrearnoticiaComponent,
+        canActivate: [AuthGuard]
     },
     {
     path: 'noticias/:slug',

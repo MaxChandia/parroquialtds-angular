@@ -19,6 +19,10 @@
     color: #555;
 }
 
+.hero-subtitle a{
+    text-decoration: none;
+}
+
 .matrimonio-container h1 {
     font-size: 2rem;
     margin-bottom: 20px;
